@@ -1,0 +1,146 @@
+.dark-modal .modal-content {
+  background-color: #292b2c;
+  color: white;
+}
+.dark-modal .close {
+  color: white;
+}
+.light-blue-backdrop {
+  background-color: #5cb3fd;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+  overflow: auto;
+}
+
+.nom-col {
+  flex: 0 0 100px !important;
+  white-space: unset !important;
+}
+
+.button-row {
+  margin: 10px 0;
+}
+mat-table{
+  width: 100%;
+}
+input[type="file"]{
+  visibility: hidden;
+}
+.image-preview {
+  height: 20rem;
+  margin: 1rem 0;
+
+}
+
+.image-preview img {
+  height: 100%;
+
+}
+.mat-column-nom{
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 20% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-image {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 25% !important;
+  width: 20% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-updated_date {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 15% !important;
+  width: 25% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-edit {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 15% !important;
+  width: 15% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}.mat-column-delete {
+   word-wrap: break-word !important;
+   white-space: unset !important;
+   flex: 0 0 15% !important;
+   width: 15% !important;
+   overflow-wrap: break-word;
+   word-wrap: break-word;
+
+   word-break: break-word;
+
+   -ms-hyphens: auto;
+   -moz-hyphens: auto;
+   -webkit-hyphens: auto;
+   hyphens: auto;
+ }
+.img-upload-btn{
+  position: absolute;
+  padding: 0;
+  width: calc(100% - 30px);
+  height: 38px;
+  opacity: 0;
+}
+
+.image-wrapper{
+  position: relative;
+  .delete-img{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 3px 5px;
+    border-radius: 50%;
+    visibility: hidden;
+    cursor: pointer;
+  }
+  &:hover .delete-img{
+    visibility: visible;
+  }
+}
+
+
+
+
+

@@ -1,0 +1,142 @@
+<!--ajouter-->
+
+<mat-card-header>
+    <mat-card-title><h2>Ajouter des contacts</h2></mat-card-title>
+</mat-card-header>
+
+<form [formGroup]="conctact_form_ajout" (ngSubmit)="onFormSubmit(conctact_form_ajout.value)">
+    <div class="form-group">
+        <div class="modal-footer">
+            <input type="text" class="form-control"placeholder="Nom" name="nom" formControlName="nom">
+            <input type="text" class="form-control"placeholder="Prenom" name="prenom" formControlName="prenom">
+            <input type="text" class="form-control"placeholder="email" name="email" formControlName="email">
+            <input type="text" class="form-control"placeholder="Tel bureau" name="telBureau" formControlName="telBureau">
+            <input type="text" class="form-control"placeholder="Tel mobile" name="telMobile" formControlName="telMobile">
+            <input type="text" class="form-control"placeholder="Adresse" name="adresse" formControlName="adresse">
+
+            <button class="btn btn-primary pull-right"type="submit"><i class="fa fa-plus add-item-icon"></i></button>
+        </div>
+    </div>
+</form>
+
+<!--tableau affichge + modifier + supprimer-->
+<div class="container">
+    <div class="row panel panel-primary" ng-controller="homeCtrl">
+        <div class="panel-heading">
+            <h2 class="panel-title">Liste des contacts </h2>
+        </div>
+    </div>
+</div>
+<div  class="row">
+    <div class="col-12">
+        <div class="table bg-white">
+            <mat-table  #table [dataSource]="dataSource1"  >
+
+
+                <!-- Title Column -->
+                <ng-container matColumnDef="nom">
+                    <th mat-header-cell *matHeaderCellDef> NOM </th>
+                    <td mat-cell *matCellDef="let element" class="isbn-col"> {{element.nom}} </td>
+                </ng-container>
+
+                <!-- Title Column -->
+                <ng-container matColumnDef="prenom">
+                    <th mat-header-cell *matHeaderCellDef> PRENOM </th>
+                    <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+                </ng-container>
+
+                <!-- Author Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef> Email </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="telBureau">
+                    <th mat-header-cell *matHeaderCellDef> Tél bureau </th>
+                    <td mat-cell *matCellDef="let element"> {{element.telBureau}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="telMobile">
+                    <th mat-header-cell *matHeaderCellDef> Tél mobile </th>
+                    <td mat-cell *matCellDef="let element"> {{element.telMobile}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="adresse">
+                    <th mat-header-cell *matHeaderCellDef> Adresse </th>
+                    <td mat-cell *matCellDef="let element"> {{element.adresse}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef  >Modifier</th>
+                    <td  mat-cell *matCellDef="let row" >
+                        <button   mat-icon-button color="success" (click)=" getcontact( row._id);openVerticallyCentered(longContent)" ><i class="fa fa-edit text-primary"></i></button>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef  >Supprimer </th>
+                    <td  mat-cell *matCellDef="let row" >
+                        <button  mat-icon-button color="success" (click)="deleteContact( row._id)" ><i class="fa fa-trash text-danger"></i></button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns" ></tr>
+
+            </mat-table>
+
+
+        </div>
+    </div>
+</div>
+
+<ng-template #longContent let-modal>
+    <div class="modal-header"style= "background:#006600;color: white">
+        <h4 class="modal-title">Modifier contact</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="marque_modif_form" (ngSubmit)="onFormSubmit1(marque_modif_form.value)">
+
+            <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input type="text" class="form-control"placeholder=" nom" name="nom" formControlName="nom" required >
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom:</label>
+                <input type="text" class="form-control"placeholder="prénom" name="prénom" formControlName="prenom" required >
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control"placeholder="email" name="email" formControlName="email" required >
+            </div>
+            <div class="form-group">
+                <label for="telBureau">téliphone Bureau</label>
+                <input type="text" class="form-control"placeholder="telBureau" name="telBureau" formControlName="telBureau" required >
+            </div>
+            <div class="form-group">
+                <label for="telMobile">téliphone portable</label>
+                <input type="text" class="form-control"placeholder="telMobile" name="telMobile" formControlName="telMobile" required >
+            </div>
+            <div class="form-group">
+                <label for="adresse">Adresse</label>
+                <input type="text" class="form-control"placeholder="adresse" name="adresse" formControlName="adresse" required >
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <form [formGroup]="marque_modif_form" (ngSubmit)="onFormSubmit1(marque_modif_form.value)">
+            <div class="button-row">
+                <button type="submit" [disabled]="!marque_modif_form.valid" class="btn btn-primary pull-right">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+
+</ng-template>
+
+

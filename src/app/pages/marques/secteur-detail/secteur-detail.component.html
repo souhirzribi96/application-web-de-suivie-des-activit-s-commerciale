@@ -1,0 +1,103 @@
+<div class="button-row">
+  <button class="btn btn-secondary btn-sm"[routerLink]="['/pages/marques']">
+      <i class="fa fa-mail-reply">précedent</i></button>
+</div>
+
+  <mat-card-header>
+    <mat-card-title><h2>{{secteur.nom}}</h2></mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="marqForm" (ngSubmit)="onFormSubmit(marqForm.value)">
+    <div class="form-group">
+    <div class="modal-footer">
+        <input type="text" class="form-control"placeholder="Le nom du marque" name="MarqueName" formControlName="MarqueName">
+        <input type="text" class="form-control"placeholder="Le lien web" name="catalogue" formControlName="catalogue">
+        <ng-select
+                   placeholder="secteur nom"
+                   name="Secteur"
+                   formControlName="Secteur"
+                   [items]='secteurs'
+                   autofocus
+                   bindLabel="nom"
+                   bindValue="_id">
+        </ng-select>
+        <button class="btn btn-primary pull-right"type="submit">sauvegarder</button>
+      </div>
+    </div>
+  </form>
+
+<div class="row">
+    <div class="col-12 mb-4">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-header transparent border-0 text-muted">
+                <h5 class="mb-0">Table des marques</h5>
+            </div>
+            <div class="card-body pt-0 widget-body">
+                <p class="text-left fs-13 text-gray">Les marques ajoutées et ses catalogues </p>
+
+                <mat-table  [dataSource]="marques" matSort >
+                    <ng-container matColumnDef="MarqueName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header ><B> Nom du marque </B></th>
+                        <td mat-cell *matCellDef="let element" >     {{element.MarqueName}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="catalogue">
+                        <th mat-header-cell *matHeaderCellDef ><B>Lien des catalogue </B></th>
+                        <td mat-cell *matCellDef="let element">
+<!--
+                            <a href="" > {{element.catalogue}}</a>
+-->
+                            <a href={{element.catalogue}}        target="_blank">{{element.catalogue}} </a>
+                        </td>
+                    </ng-container>
+
+                  <!--  <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef ><B> Modifier </B></th>
+                        <td  mat-cell *matCellDef="let row" >
+                            <button   mat-icon-button color="success" >
+                                <i class="fa fa-edit">Modifier</i></button>
+                        </td>
+                    </ng-container>-->
+
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef ><B> Supprimer </B></th>
+                        <td  mat-cell *matCellDef="let row" >
+                            <button   mat-icon-button color="success"(click)="deleteMarq( row._id)"><i class="fa fa-trash">Supprimer</i></button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns" ></tr>
+                </mat-table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+
+<ng-template #longContent let-modal>
+    <div class="modal-header"style= "background:#336699;color: white">
+        <h4 class="modal-title">Modifier Marques</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="secteurForm" (ngSubmit)="onFormSubmit1(secteurForm.value)">
+            <div class="form-group">
+                <label> Nouvelle nom du marque:</label>
+                <input type="text" class="form-control"placeholder="Nom du marque" name="MarqueName" formControlName="MarqueName" required >
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <form [formGroup]="secteurForm" (ngSubmit)="onFormSubmit1(secteurForm.value)">
+            <div class="button-row">
+                <button type="submit" [disabled]="!secteurForm.valid" class="btn btn-primary pull-right">Sauvegarder</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+-->
